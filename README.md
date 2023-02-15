@@ -1,64 +1,20 @@
-# USU 4610 Simple Server
-This project serves as a starting point for full-stack applications.
+# CS4610 Assn2 Reptile_Tracker
 
-## Get Started
-### Clone the repo
-```bash
-git clone git@github.com:dittonjs/usu-4610-simple-server.git
-```
-Once cloned you can delete the `.git` folder and reinitialize with your own repo
+## Backend
 
-```bash
-rm -rf .git
-git init
-```
-The create your remote repository and commit and push to it.
+### Stories
 
-### Install the dependencies
+1. I should be able to create a user account - Josh
+2. I should be able to sign into a user account - Josh
+3. I should be able to create a reptile
+4. I should be able to delete a reptile
+5. I should be able to update a reptile
+6. I should be able to list all of my reptiles
+7. I should be able to create a feeding for a reptile
+8. I should be able to list all of the feedings for a reptile
+9. I should be able to create a husbandry record for a reptile
+10. I should be able to list all of the husbandry records for a reptile
+11. I should be able to create a schedule for a reptile
+12. I should be able to list all of the schedules for a reptile
+13. I should be able to list all of the schedules for a user
 
-With yarn
-```bash
-yarn
-```
-
-With npm
-```bash
-npm install
-```
-
-## Development
-### .env
-Copy the contents of `.env.example` into a new file called `.env`.
-
-### Database
-Create the database by running
-```bash
-yarn db:migrate
-```
-You will need the re-run this command anytime you make changes to the schema file.
-
-### Running thhe server
-Start the server by running:
-
-With yarn
-```bash
-yarn dev
-```
-
-With npm
-```bash
-npm run dev
-```
-
-## Production
-Build the project by running
-
-With yarn
-```bash
-yarn build
-```
-
-With npm
-```bash
-npm run build
-```
