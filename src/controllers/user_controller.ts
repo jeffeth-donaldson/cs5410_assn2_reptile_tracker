@@ -3,7 +3,7 @@ import { PrismaClient } from "@prisma/client";
 import { RequestWithJWTBody } from "../dto/jwt";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { build_controller } from "../lib/build_controller";
+import { build_controller } from "../lib/controller_builder";
 
 const getMe = (client: PrismaClient):RequestHandler =>
     async (req: RequestWithJWTBody, res) => {
