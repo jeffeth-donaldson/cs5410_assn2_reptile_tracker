@@ -10,10 +10,10 @@
 4. I should be able to delete a reptile - Josh
 5. I should be able to update a reptile - Josh
 6. I should be able to list all of my reptiles - Josh
-7. I should be able to create a feeding for a reptile
-8. I should be able to list all of the feedings for a reptile
-9. I should be able to create a husbandry record for a reptile
-10. I should be able to list all of the husbandry records for a reptile
+7. I should be able to create a feeding for a reptile - Dave
+8. I should be able to list all of the feedings for a reptile - Dave
+9. I should be able to create a husbandry record for a reptile - Dave
+10. I should be able to list all of the husbandry records for a reptile - Dave
 11. I should be able to create a schedule for a reptile
 12. I should be able to list all of the schedules for a reptile
 13. I should be able to list all of the schedules for a user
