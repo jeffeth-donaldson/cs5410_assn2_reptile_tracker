@@ -14,7 +14,7 @@
 8. I should be able to list all of the feedings for a reptile
 9. I should be able to create a husbandry record for a reptile
 10. I should be able to list all of the husbandry records for a reptile
-11. I should be able to create a schedule for a reptile
-12. I should be able to list all of the schedules for a reptile
-13. I should be able to list all of the schedules for a user
+11. I should be able to create a schedule for a - Brad
+12. I should be able to list all of the schedules for a reptile - Brad
+13. I should be able to list all of the schedules for a user - Brad
 
