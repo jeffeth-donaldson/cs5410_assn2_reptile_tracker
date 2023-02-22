@@ -18,7 +18,7 @@ const CreateHusbandryRecord = (client:PrismaClient):RequestHandler => async (req
             weight,
             temperature,
             humidity,
-            reptileId: req.jwtBody?.userId!!
+            reptileId: parseInt(req.params.id)
         }
     });
 
@@ -26,18 +26,30 @@ const CreateHusbandryRecord = (client:PrismaClient):RequestHandler => async (req
 }
 
 const getHusbandryRecords = (client:PrismaClient):RequestHandler => async (req:RequestWithJWTBody, res) => {
-    const husbandryRecords = await client.husbandryRecord.findMany({
+    const reptile = await client.reptile.findFirst({
         where: {
-            reptileId: req.jwtBody?.userId
+            userId: req.jwtBody?.userId,
+            id: parseInt(req.params.id)
         }
     });
+
+    if (!reptile){
+        res.status(404).json({message:"Reptile not found"});
+    } else {
+        const husbandryRecords = await client.husbandryRecord.findMany({
+            where: {
+                reptileId: parseInt(req.params.id)
+            }
+        });
+
     res.json(husbandryRecords);
+    }
 }
 
 export const husbandryRecordController= build_controller(
     "husbandryRecords",
     [
-        {path: "/", endpointBuilder:CreateHusbandryRecord, method:"post"},
-        {path:"/mine", endpointBuilder:getHusbandryRecords, method:"get"}
+        {path: "/:id", endpointBuilder:CreateHusbandryRecord, method:"post"},
+        {path:"/:id", endpointBuilder:getHusbandryRecords, method:"get"}
     ]
 )

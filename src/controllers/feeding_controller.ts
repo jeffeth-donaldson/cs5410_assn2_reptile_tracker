@@ -12,7 +12,7 @@ const createFeeding = (client:PrismaClient):RequestHandler => async (req:Request
     const feeding = await client.feeding.create({
         data: {
             foodItem,
-            reptileId: req.jwtBody?.userId!!
+            reptileId: parseInt(req.params.id)
         }
     });
 
@@ -20,18 +20,29 @@ const createFeeding = (client:PrismaClient):RequestHandler => async (req:Request
 }
 
 const getReptileFeedings = (client:PrismaClient):RequestHandler => async (req:RequestWithJWTBody, res) => {
-    const feedings = await client.feeding.findMany({
+    const reptile = await client.reptile.findFirst({
         where: {
-            reptileId: req.jwtBody?.userId
+            userId: req.jwtBody?.userId,
+            id: parseInt(req.params.id)
         }
     });
+    if (!reptile){
+        res.status(404).json({message:"Reptile not found"});
+    } else {
+        const feedings = await client.feeding.findMany({
+            where: {
+                reptileId: parseInt(req.params.id)
+            }
+        });
+
     res.json(feedings);
+    }
 }
 
 export const feedingController = build_controller(
     "feedings",
     [
-        {path: "/", endpointBuilder:createFeeding, method:"post"},
-        {path:"/mine", endpointBuilder:getReptileFeedings, method:"get"}
+        {path: "/:id", endpointBuilder:createFeeding, method:"post"},
+        {path:"/:id", endpointBuilder:getReptileFeedings, method:"get"}
     ]
 )
