@@ -38,7 +38,7 @@ const getHusbandryRecords = (client:PrismaClient):RequestHandler => async (req:R
     } else {
         const husbandryRecords = await client.husbandryRecord.findMany({
             where: {
-                reptileId: parseInt(req.params.id)
+                reptileId: reptile.id
             }
         });
 

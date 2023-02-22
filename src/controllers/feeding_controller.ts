@@ -31,7 +31,7 @@ const getReptileFeedings = (client:PrismaClient):RequestHandler => async (req:Re
     } else {
         const feedings = await client.feeding.findMany({
             where: {
-                reptileId: parseInt(req.params.id)
+                reptileId: reptile.id
             }
         });
 
