@@ -12,17 +12,31 @@ type CreateHusbandryRecordBody = {
 
 const CreateHusbandryRecord = (client:PrismaClient):RequestHandler => async (req:RequestWithJWTBody, res) => {
     const {length, weight, temperature, humidity} = req.body as CreateHusbandryRecordBody;
-    const husbandryRecord = await client.husbandryRecord.create({
-        data: {
-            length,
-            weight,
-            temperature,
-            humidity,
-            reptileId: parseInt(req.params.id)
+
+    const reptile = await client.reptile.findFirst({
+        where: {
+            userId: req.jwtBody?.userId,
+            id: parseInt(req.params.id)
         }
     });
 
-    res.json({husbandryRecord});
+    if (!reptile){
+        res.status(404).json({message:"Reptile not found"});
+    }
+    else {
+
+        const husbandryRecord = await client.husbandryRecord.create({
+            data: {
+                length,
+                weight,
+                temperature,
+                humidity,
+                reptileId: parseInt(req.params.id)
+            }
+        });
+
+        res.json({husbandryRecord});
+    }
 }
 
 const getHusbandryRecords = (client:PrismaClient):RequestHandler => async (req:RequestWithJWTBody, res) => {

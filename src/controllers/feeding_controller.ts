@@ -9,14 +9,26 @@ type CreateFeedingBody = {
 
 const createFeeding = (client:PrismaClient):RequestHandler => async (req:RequestWithJWTBody, res) => {
     const {foodItem} = req.body as CreateFeedingBody;
-    const feeding = await client.feeding.create({
-        data: {
-            foodItem,
-            reptileId: parseInt(req.params.id)
+
+    const reptile = await client.reptile.findFirst({
+        where: {
+            userId: req.jwtBody?.userId,
+            id: parseInt(req.params.id)
         }
     });
+    if (!reptile){
+        res.status(404).json({message:"Reptile not found"});
+    }
+    else {
+        const feeding = await client.feeding.create({
+            data: {
+                foodItem,
+                reptileId: parseInt(req.params.id)
+            }
+        });
 
-    res.json({feeding});
+        res.json({feeding});
+    }
 }
 
 const getReptileFeedings = (client:PrismaClient):RequestHandler => async (req:RequestWithJWTBody, res) => {
