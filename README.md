@@ -1,5 +1,16 @@
 # CS4610 Assn2 Reptile_Tracker
 
+## How to run
+1. Rename .env.example file to .env
+   1. replace \<port-to-listen-on> with 3000
+   2. replace \<add-key-here> with your own key
+2. In a terminal run the following:
+   1. yarn
+   2. yarn db:migrate
+   3. yarn dev to start the server
+   4. or yarn build to build for production
+3. The server is running and ready for postman requests.
+
 ## Backend
 
 ### Stories
