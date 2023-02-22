@@ -15,23 +15,33 @@ type CreateScheduleBody = {
     sunday: boolean
 }
 const createSchedule = (client:PrismaClient):RequestHandler => async (req:RequestWithJWTBody, res) => {
-    const {type, description, monday, tuesday, wednesday, thursday, friday, saturday, sunday} = req.body  as CreateScheduleBody;
-    const schedule = await client.schedule.create({
-        data: {
-            type,
-            description,
-            monday,
-            tuesday,
-            wednesday,
-            thursday,
-            friday,
-            saturday,
-            sunday,
-            userId: req.jwtBody?.userId!!,
-            reptileId: parseInt(req.params.id)
+    const reptile = await client.reptile.findFirst({
+        where: {
+            userId: req.jwtBody?.userId,
+            id: parseInt(req.params.id)
         }
     });
-    res.json({schedule})
+    if (!reptile){
+        res.status(404).json({message:"Reptile not found"});
+    } else {
+        const {type, description, monday, tuesday, wednesday, thursday, friday, saturday, sunday} = req.body  as CreateScheduleBody;
+        const schedule = await client.schedule.create({
+            data: {
+                type,
+                description,
+                monday,
+                tuesday,
+                wednesday,
+                thursday,
+                friday,
+                saturday,
+                sunday,
+                userId: req.jwtBody?.userId!!,
+                reptileId: parseInt(req.params.id)
+            }
+        });
+        res.json({schedule})
+    }
 }
 const getUserSchedules = (client:PrismaClient):RequestHandler => async (req:RequestWithJWTBody, res) => {
     const schedules = await client.schedule.findMany({
