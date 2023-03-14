@@ -1,0 +1,14 @@
+{
+    "sqltools.useNodeRuntime": true,
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "database": "${workspaceFolder:assn2_reptile_tracker}/prisma/dev.db",
+            "name": "dev.db"
+        }
+    ],
+    "cSpell.words": [
+        "signup"
+    ]
+}
