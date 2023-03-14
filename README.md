@@ -1,3 +1,47 @@
+# CS4610 Assn3 Reptile_Tracker_Frontend
+
+## Stories
+### Home Page (the first page I hit when I go to you application) <- Josh
+
+If I am already logged in, then I should be redirected (replace state) to the dashboard page when I reach this page. Otherwise I should be able to do the following:
+
+1. I should see the name of your application
+2. I should see a description of what the app does.
+3. I should be able to navigate to the Login page
+4. I should be able to navigate to the Signup page
+
+### Login Page <- Josh
+
+1. I should be able to sign into a user account
+2. I should be able to navigate to the signup page
+3. Upon signing in, I should be redirected to the dashboard page
+
+### Signup Page <- Josh
+
+1. I should be able to create a user account
+2. I should be able to navigate to the Login page
+3. Upon creating an account I should be redirected to the dashboard page
+
+### Dashboard Page
+
+1. I should see all of the schedules for my user for the day of the week it is (for example, if it is Monday then I should only see the schedules that have me doing something on Monday.)
+2. I should see a list of all my reptiles
+When selecting a reptile the app should navigate to the Reptile page
+3. I should be able to create a new reptile (you can do this on this page via something like a pop up, or you can create a new page for this)
+4. I should be able to delete a reptile.
+5. I should be able to log out of my account
+
+### Reptile Page
+
+1. I should see a list of all of the feedings for this reptile
+2. I should see a list of all of the husbandry records for this reptile
+3. I should see a list of all of the schedules for this reptile.
+4. I should be able to update this reptile
+5. I should be able to create a feeding for this reptile
+6. I should be able to create a husbandry record for this reptile
+7. I should be able to create a schedule for this reptile
+
+
 # CS4610 Assn2 Reptile_Tracker
 
 ## How to run

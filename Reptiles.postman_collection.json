@@ -1,0 +1,445 @@
+{
+	"info": {
+		"_postman_id": "a06315d0-a31a-4943-ad4a-1ae6f2f73f94",
+		"name": "Reptiles",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25628222"
+	},
+	"item": [
+		{
+			"name": "Create User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"josh.me@lizard.com\",\n    \"password\":\"password\",\n    \"firstName\":\"Josh\",\n    \"lastName\":\"McClung\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/users",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"josh.me@lizard.com\",\n    \"password\":\"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/token",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Me",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:3000/users/me",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateReptile",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY3NzAxODk4OSwiZXhwIjoxNjc3MDE5Mjg5fQ.X3e96ruHe7p78mEhGrMss8rqV2_jza3f7yjZHYSHHGw",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"princess\",\n    \"species\":\"ball_python\",\n    \"sex\":\"f\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/reptiles",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"reptiles"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTY3NzAxMzA1NiwiZXhwIjoxNjc3MDEzMzU2fQ.BzeOwS3yb-dsTpbmwpN4ldMCaFKejfj9nu-5RiIV2RQ",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get My Reptiles",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/reptiles/mine",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"reptiles",
+						"mine"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Reptile",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"princess2\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/reptiles/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"reptiles",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Reptile",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/reptiles/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"reptiles",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateHusbandryRecord",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY3NzAxNzgwNSwiZXhwIjoxNjc3MDE4MTA1fQ.Tc9cCkuIjvuS348p4bR02XFgrjiOYSW5zNcqWmAygEY",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"length\":1,\r\n    \"weight\":1,\r\n    \"temperature\":1,\r\n    \"humidity\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/husbandryRecords/2",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"husbandryRecords",
+						"2"
+					],
+					"query": [
+						{
+							"key": "reptileId",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get My HusbandryRecord",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/husbandryRecords/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"husbandryRecords",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateFeeding",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjQsImlhdCI6MTY3NzAxNTE2MywiZXhwIjoxNjc3MDE1NDYzfQ.mjtalSWZO8E3IJR5YOdvc_Aa5jBnUMMXAQMphprf6D4",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"foodItem\":\"large mouse\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/feedings/2",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"feedings",
+						"2"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get My Feedings",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/feedings/2",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"feedings",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "makeSchedule",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "you need to put your own from signing in or from logging I at /token",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"type\" : \"feed\",\r\n    \"description\" : \"give the snake a snack\",\r\n    \"monday\" : false,\r\n    \"tuesday\" : false,\r\n    \"wednesday\" : false,\r\n    \"thursday\" : false,\r\n    \"friday\" : false,\r\n    \"saturday\" : true,\r\n    \"sunday\" : false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/schedules/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"schedules",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getReptileSchedules",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "you need to put your own from signing in or from logging I at /token",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/schedules/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"schedules",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getUserSchedules",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "you need to put your own from signing in or from logging I at /token",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/schedules/mine",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"schedules",
+						"mine"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsImlhdCI6MTY3NzEwMTg3MSwiZXhwIjoxNjc3MTAyMTcxfQ.OhKf-Vqtpk03f-kfDq3m9-dq557l4CxJCzQWhrlS8sM",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
