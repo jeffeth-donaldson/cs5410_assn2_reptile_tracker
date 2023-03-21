@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useApi } from "../hooks/useApi";
 
 export const Signup = () => {
@@ -8,17 +8,29 @@ export const Signup = () => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const api = useApi();
+    const navigate = useNavigate();
+    const signup = async () => {
+        const resultBody = await api.post('/users', {email,password,firstName,lastName})
+        if (resultBody.error) {
+            console.log(resultBody.error)
+        }
+        if (resultBody.token) {
+            window.localStorage.setItem("token", resultBody.token)
+            navigate("/dashboard", {replace: true})
+        }
+    }
     return (
         <>
         <h2>Sign up</h2>
-        <div className="form">
+        <form className="signup">
             <label>Email:<input type={"email"} value={email} onChange={e => setEmail(e.target.value)} /></label>
             <label>Password: <input type={"password"} value={password} onChange={e => setPassword(e.target.value)} /></label>
             <label>First Name: <input type={"text"} value={firstName} onChange={e => setFirstName(e.target.value)} /></label>
             <label>Last Name: <input type={"text"} value={lastName} onChange={e => setLastName(e.target.value)} /></label>
-        </div>
-        <button onClick={() => api.post('/users', {email,password,firstName,lastName})}>Sign up</button>
-        <div>Already have an Account?<Link to={'/login'}>Log in</Link></div>
+        </form>
+        <button onClick={signup}>Sign up</button>
+        <div>Already have an Account? <Link to={'/login'}>Log in</Link></div>
         </>
     )
+
 }

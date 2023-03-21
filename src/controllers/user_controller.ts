@@ -26,21 +26,26 @@ const createUser = (client: PrismaClient): RequestHandler =>
     async (req, res) => {
         const {email, password, firstName, lastName} = req.body as CreateUserBody;
         const passwordHash = await bcrypt.hash(password, 10)
-        const user = await client.user.create({
-          data: {
-            firstName,
-            lastName,
-            email,
-            passwordHash
-          }
-        });
+        try {
+            const user = await client.user.create({
+              data: {
+                firstName,
+                lastName,
+                email,
+                passwordHash
+              }
+            });
+            const token = jwt.sign({
+                userId: user.id
+            }, process.env.ENCRYPTION_KEY!!, {
+                expiresIn: '5m'
+            });
+            res.json({ user, token });
+        } catch (error) {
+            res.status(403)
+            res.json({user:null, token:null, error:"Cannot create a user with that email."})
+        }
 
-        const token = jwt.sign({
-            userId: user.id
-        }, process.env.ENCRYPTION_KEY!!, {
-            expiresIn: '5m'
-        });
-        res.json({ user, token });
       }
 
       export const usersController = build_controller(

@@ -8,9 +8,11 @@ import { Signup } from './pages/Signup';
 import { Login } from './pages/Login';
 import { Dashboard } from './pages/Dashboard';
 import { Reptile } from './pages/Reptile';
+import { User } from '@prisma/client';
 
 function App() {
   const [api, setApi] = useState(new Api())
+  const [user, setUser] = useState<User>()
   const router = createBrowserRouter([
     {
       path: '/',

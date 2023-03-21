@@ -1,5 +1,7 @@
-import { Link } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import {Outlet, useLocation} from "react-router-dom"
+import { ApiContext } from "../contexts/api";
 
 export const Root = () => {
     const location = useLocation();
@@ -9,6 +11,15 @@ export const Root = () => {
     } else if (location.pathname == "/signup") {
         name = "Signup";
     }
+
+    const navigate = useNavigate();
+    useEffect(()=> {
+        if(!window.localStorage.getItem("token")) {
+            navigate("/",{replace:true}) // Prevents us from getting stuck in a loop
+        } else if(location.pathname === "/") {
+            navigate("/dashboard", {replace:true})
+        }
+        },[])
 
     return (
         <>
