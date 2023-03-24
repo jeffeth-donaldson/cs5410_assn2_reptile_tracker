@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../contexts/auth";
 import { useApi } from "../hooks/useApi";
 
 export const Login = () => {
@@ -7,9 +8,10 @@ export const Login = () => {
     const [password, setPassword] = useState("");
     const api = useApi();
     const navigate = useNavigate();
+    const setToken = useContext(AuthContext);
 
     useEffect(()=> {
-        if(window.localStorage.getItem("token")) {
+        if(api.token !== "") {
             navigate(-1) // We don't need to log in again
         }
         },[]);
@@ -20,7 +22,7 @@ export const Login = () => {
             console.log(resultBody.error)
         }
         if (resultBody.token) {
-            window.localStorage.setItem("token", resultBody.token)
+            setToken(resultBody.token)
             navigate("/dashboard", {replace: true})
         }
     }

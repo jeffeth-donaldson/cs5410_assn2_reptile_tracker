@@ -2,8 +2,10 @@ import { useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {Outlet, useLocation} from "react-router-dom"
 import { ApiContext } from "../contexts/api";
+import { useAuth } from "../hooks/useAuth";
 
 export const Root = () => {
+    const {token, setToken} = useAuth();
     const location = useLocation();
     let name = "Home";
     if (location.pathname === "/login") {
@@ -14,7 +16,7 @@ export const Root = () => {
 
     const navigate = useNavigate();
     useEffect(()=> {
-        if(!window.localStorage.getItem("token")) {
+        if(!token) {
             navigate("/",{replace:true}) // Prevents us from getting stuck in a loop
         } else if(location.pathname === "/") {
             navigate("/dashboard", {replace:true})

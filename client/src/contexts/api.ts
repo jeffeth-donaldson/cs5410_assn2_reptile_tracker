@@ -4,6 +4,7 @@ import {createContext} from "react";
 type Method = "get" | "post" | "put" | "delete";
 export class Api {
     public token:string = localStorage.getItem("token") || "";
+    public constructor (token:string) {this.token = token;}
     private makeRequest = async (url: string, method: Method, body: Record<string, any> = {}) => {
         const options: RequestInit= {
             method,

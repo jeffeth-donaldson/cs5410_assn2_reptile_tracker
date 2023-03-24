@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../contexts/auth";
 import { useApi } from "../hooks/useApi";
 
 export const Signup = () => {
@@ -9,13 +10,14 @@ export const Signup = () => {
     const [lastName, setLastName] = useState("");
     const api = useApi();
     const navigate = useNavigate();
+    const setToken = useContext(AuthContext)
     const signup = async () => {
         const resultBody = await api.post('/users', {email,password,firstName,lastName})
         if (resultBody.error) {
             console.log(resultBody.error)
         }
         if (resultBody.token) {
-            window.localStorage.setItem("token", resultBody.token)
+            setToken(resultBody.token)
             navigate("/dashboard", {replace: true})
         }
     }

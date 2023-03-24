@@ -9,10 +9,11 @@ import { Login } from './pages/Login';
 import { Dashboard } from './pages/Dashboard';
 import { Reptile } from './pages/Reptile';
 import { User } from '@prisma/client';
+import { AuthContext } from './contexts/auth';
+import { useAuth } from './hooks/useAuth';
 
 function App() {
-  const [api, setApi] = useState(new Api())
-  const [user, setUser] = useState<User>()
+  const {token, setToken} = useAuth();
   const router = createBrowserRouter([
     {
       path: '/',
@@ -38,11 +39,14 @@ function App() {
     }
   ]);
 
+
   return (
     <>
-    <ApiContext.Provider value={api}>
-      <RouterProvider router={router} />
-    </ApiContext.Provider>
+    <AuthContext.Provider value={setToken}>
+      <ApiContext.Provider value={new Api(token)}>
+        <RouterProvider router={router} />
+      </ApiContext.Provider>
+    </AuthContext.Provider>
     </>
   )
 }
