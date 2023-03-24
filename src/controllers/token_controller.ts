@@ -30,7 +30,7 @@ type LoginBody = {
     },
     process.env.ENCRYPTION_KEY!!,
     {
-      expiresIn: '5m'
+      expiresIn: '120m'
     })
     res.status(200).json({user, token});
   }

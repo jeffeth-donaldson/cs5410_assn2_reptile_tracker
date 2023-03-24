@@ -43,7 +43,7 @@ function App() {
   return (
     <>
     <AuthContext.Provider value={setToken}>
-      <ApiContext.Provider value={new Api(token)}>
+      <ApiContext.Provider value={new Api(token, setToken)}>
         <RouterProvider router={router} />
       </ApiContext.Provider>
     </AuthContext.Provider>

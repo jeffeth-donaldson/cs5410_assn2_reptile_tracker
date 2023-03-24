@@ -16,8 +16,8 @@ export const Root = () => {
 
     const navigate = useNavigate();
     useEffect(()=> {
-        if(!token) {
-            navigate("/",{replace:true}) // Prevents us from getting stuck in a loop
+        if(!token && location.pathname !== '/login' && location.pathname !== '/signup') {
+            navigate("/",{replace:true}); // Prevents us from getting stuck in a loop
         } else if(location.pathname === "/") {
             navigate("/dashboard", {replace:true})
         }

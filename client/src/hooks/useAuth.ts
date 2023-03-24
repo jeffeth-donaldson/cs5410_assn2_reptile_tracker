@@ -6,7 +6,12 @@ export const useAuth = () => {
 
 
     useEffect(() => {
-        window.localStorage.setItem("token", token);
+        if (token === "")
+        {
+            window.localStorage.removeItem("token");
+        } else {
+            window.localStorage.setItem("token", token);
+        }
     },[token]);
     
     return {token, setToken};

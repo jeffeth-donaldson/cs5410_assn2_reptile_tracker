@@ -6,6 +6,7 @@ import { useApi } from "../hooks/useApi";
 export const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
     const api = useApi();
     const navigate = useNavigate();
     const setToken = useContext(AuthContext);
@@ -24,6 +25,9 @@ export const Login = () => {
         if (resultBody.token) {
             setToken(resultBody.token)
             navigate("/dashboard", {replace: true})
+            setError("");
+        } else {
+            setError(resultBody.message);
         }
     }
     return (
@@ -33,6 +37,7 @@ export const Login = () => {
             <label>Email:<input type={"email"} value={email} onChange={e => setEmail(e.target.value)} /></label>
             <label>Password: <input type={"password"} value={password} onChange={e => setPassword(e.target.value)} /></label>
         </div>
+        <div className="error">{error}</div>
         <button onClick={Login}>Log in</button>
         <div>Need an Account? <Link to="/signup">Sign up.</Link></div>
         </>

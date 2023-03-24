@@ -49,7 +49,7 @@ const getUserSchedules = (client:PrismaClient):RequestHandler => async (req:Requ
             userId: req.jwtBody?.userId!!
         }
     });
-    res.json(schedules);
+    res.json({schedules});
 }
 
 const getRepSchedules = (client:PrismaClient):RequestHandler => async (req:RequestWithJWTBody, res) => {

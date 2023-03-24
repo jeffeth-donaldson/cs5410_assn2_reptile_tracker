@@ -4,7 +4,11 @@ import {createContext} from "react";
 type Method = "get" | "post" | "put" | "delete";
 export class Api {
     public token:string = localStorage.getItem("token") || "";
-    public constructor (token:string) {this.token = token;}
+    public setToken:React.Dispatch<React.SetStateAction<string>>;
+    public constructor (token:string, setToken:React.Dispatch<React.SetStateAction<string>>) {
+        this.token = token;
+        this.setToken = setToken
+    }
     private makeRequest = async (url: string, method: Method, body: Record<string, any> = {}) => {
         const options: RequestInit= {
             method,
@@ -18,7 +22,7 @@ export class Api {
         }
         const result = await fetch(import.meta.env.VITE_SERVER_URL+url, options)
         if (result.status === 401) {
-            window.localStorage.removeItem("token");
+            this.setToken            
         }
         return result.json();
     }
@@ -35,10 +39,6 @@ export class Api {
     del(url: string) {
         return this.makeRequest(url, 'delete');
     }
-    setToken(token:string) {
-        localStorage.setItem("token",token);
-        this.token = token;
-    }
 }
 // type ApiContext = {api: Api, user?:User, setUser:Function}
-export const ApiContext = createContext<Api>(new Api());
+export const ApiContext = createContext<Api>(new Api(""));

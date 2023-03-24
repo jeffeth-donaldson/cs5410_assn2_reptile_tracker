@@ -20,14 +20,6 @@ app.engine("hbs", engine({extname: ".hbs"}));
 app.set("view engine", "hbs");
 app.set("views", path.join(__dirname, "/views"));
 
-app.get("/", (req,res) => {
-  console.log("root");
-  res.render("app", {
-    development: process.env.debug?.toLowerCase() === "true",
-    assetUrl: process.env.assetUrl
-  });
-})
-
 if (process.env.NODE_ENV !== 'production') {
 	app.use((req, res, next) => {
 		if (req.path.match(/\.\w+$/)) { // does the path end with a file extension
@@ -52,6 +44,14 @@ reptileController(app,client);
 feedingController(app, client);
 husbandryRecordController(app, client);
 scheduleController(app,client);
+
+app.get("/*", (req,res) => {
+	console.log("root");
+	res.render("app", {
+	  development: process.env.debug?.toLowerCase() === "true",
+	  assetUrl: process.env.assetUrl
+	});
+  })
 
 const port = parseInt(process.env.PORT??'3000')
 app.listen(port, () => {
