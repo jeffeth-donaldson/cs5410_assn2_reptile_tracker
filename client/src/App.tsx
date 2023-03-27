@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import './App.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
@@ -13,7 +13,15 @@ import { AuthContext } from './contexts/auth';
 import { useAuth } from './hooks/useAuth';
 
 function App() {
-  const {token, setToken} = useAuth();
+  const [token, setToken] = useState(window.localStorage.getItem("token") || "");
+  useEffect(() => {
+    if (token === "")
+    {
+        window.localStorage.removeItem("token");
+    } else {
+        window.localStorage.setItem("token", token);
+    }
+},[token]);
   const router = createBrowserRouter([
     {
       path: '/',
@@ -42,8 +50,8 @@ function App() {
 
   return (
     <>
-    <AuthContext.Provider value={setToken}>
-      <ApiContext.Provider value={new Api(token, setToken)}>
+    <AuthContext.Provider value={{setToken, token}}>
+      <ApiContext.Provider value={new Api(setToken)}>
         <RouterProvider router={router} />
       </ApiContext.Provider>
     </AuthContext.Provider>

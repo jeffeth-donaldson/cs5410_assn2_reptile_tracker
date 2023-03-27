@@ -6,7 +6,7 @@ import { AuthContext } from "../contexts/auth"
 import { useAuth } from "../hooks/useAuth"
 
 export const Dashboard = () => {
-    const setToken = useContext(AuthContext);
+    const {token, setToken} = useAuth();
     const navigate = useNavigate();
     return(<>
     <h2>I'm on the Dashboard Page</h2>

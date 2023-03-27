@@ -7,16 +7,11 @@ import { useAuth } from "../hooks/useAuth";
 export const Root = () => {
     const {token, setToken} = useAuth();
     const location = useLocation();
-    let name = "Home";
-    if (location.pathname === "/login") {
-        name = "Login";
-    } else if (location.pathname == "/signup") {
-        name = "Signup";
-    }
 
     const navigate = useNavigate();
     useEffect(()=> {
         if(!token && location.pathname !== '/login' && location.pathname !== '/signup') {
+            console.log(location.pathname);
             navigate("/",{replace:true}); // Prevents us from getting stuck in a loop
         } else if(location.pathname === "/") {
             navigate("/dashboard", {replace:true})

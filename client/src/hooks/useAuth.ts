@@ -1,18 +1,14 @@
 import { useContext, useEffect, useState } from "react";
 import { ApiContext } from "../contexts/api";
+import { AuthContext } from "../contexts/auth";
 
 export const useAuth = () => {
-    const [token, setToken] = useState(window.localStorage.getItem("token") || "");
 
-
-    useEffect(() => {
-        if (token === "")
-        {
-            window.localStorage.removeItem("token");
-        } else {
-            window.localStorage.setItem("token", token);
-        }
-    },[token]);
+    const auth = useContext(AuthContext);
+    const setToken = (token:string) => {
+        auth.setToken(token);
+        window.localStorage.setItem("token", token)
+    }
     
-    return {token, setToken};
+    return {token:auth.token, setToken};
 }

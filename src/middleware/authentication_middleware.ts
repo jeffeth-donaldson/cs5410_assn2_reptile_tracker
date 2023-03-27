@@ -12,7 +12,8 @@ export const authenticationMiddleware: RequestHandler = async (req:RequestWithJW
         authorized = true;
       }
     } catch (error) {
-      console.log("token failed validation")        
+      console.log("token failed validation")
+      console.log(error)  
     } finally {
         if(authorized) {
             next();

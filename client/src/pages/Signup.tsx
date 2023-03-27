@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/auth";
 import { useApi } from "../hooks/useApi";
+import { useAuth } from "../hooks/useAuth";
 
 export const Signup = () => {
     const [email, setEmail] = useState("");
@@ -10,7 +11,7 @@ export const Signup = () => {
     const [lastName, setLastName] = useState("");
     const api = useApi();
     const navigate = useNavigate();
-    const setToken = useContext(AuthContext)
+    const {token, setToken} = useAuth();
     const signup = async () => {
         const resultBody = await api.post('/users', {email,password,firstName,lastName})
         if (resultBody.error) {
@@ -18,6 +19,7 @@ export const Signup = () => {
         }
         if (resultBody.token) {
             setToken(resultBody.token)
+            console.log(resultBody.token)
             navigate("/dashboard", {replace: true})
         }
     }

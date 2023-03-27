@@ -1,5 +1,8 @@
 import { User } from "@prisma/client";
 import {createContext} from "react";
 
-
-export const AuthContext = createContext<(token:string)=>void>(() =>{})
+type Auth = {
+    setToken: (token:string)=>void,
+    token: string
+}
+export const AuthContext = createContext<Auth>({setToken:(token) =>{},token:"token"})

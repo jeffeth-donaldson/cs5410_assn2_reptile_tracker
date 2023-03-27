@@ -2,17 +2,18 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/auth";
 import { useApi } from "../hooks/useApi";
+import { useAuth } from "../hooks/useAuth";
 
 export const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const api = useApi();
+    const {token, setToken} = useAuth();
     const navigate = useNavigate();
-    const setToken = useContext(AuthContext);
 
     useEffect(()=> {
-        if(api.token !== "") {
+        if(token !== "") {
             navigate(-1) // We don't need to log in again
         }
         },[]);

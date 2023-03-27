@@ -3,10 +3,8 @@ import {createContext} from "react";
 
 type Method = "get" | "post" | "put" | "delete";
 export class Api {
-    public token:string = localStorage.getItem("token") || "";
     public setToken:React.Dispatch<React.SetStateAction<string>>;
-    public constructor (token:string, setToken:React.Dispatch<React.SetStateAction<string>>) {
-        this.token = token;
+    public constructor (setToken:React.Dispatch<React.SetStateAction<string>>) {
         this.setToken = setToken
     }
     private makeRequest = async (url: string, method: Method, body: Record<string, any> = {}) => {
@@ -14,7 +12,7 @@ export class Api {
             method,
             headers : {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${this.token}`
+                "Authorization": `Bearer ${window.localStorage.getItem("token")}`
             }
         }
         if (method === 'post' || method === 'put') {
@@ -22,7 +20,8 @@ export class Api {
         }
         const result = await fetch(import.meta.env.VITE_SERVER_URL+url, options)
         if (result.status === 401) {
-            this.setToken            
+            this.setToken("")
+            window.localStorage.removeItem("token")         
         }
         return result.json();
     }
@@ -41,4 +40,4 @@ export class Api {
     }
 }
 // type ApiContext = {api: Api, user?:User, setUser:Function}
-export const ApiContext = createContext<Api>(new Api(""));
+export const ApiContext = createContext<Api>(new Api(() => {}));
