@@ -13,7 +13,8 @@ export const CreateReptile = () => {
     
  
 
-    const createreptile = async () => {
+    const createreptile = async (e: React.FormEvent<HTMLFormElement> | undefined) => {
+        e?.preventDefault()
         if (sex == "" || species == "") {
             console.log("You need to pick a species and sex!");
             return;
@@ -28,7 +29,7 @@ export const CreateReptile = () => {
     
     return(<>
     <h2>I'm on the Create Reptile Page</h2>
-    <form className="CreateRep">
+    <form className="CreateRep" onSubmit={createreptile}>
         <label htmlFor="species1">Species:</label>
             <select name="species1" required>
                 <option disabled selected></option>
@@ -45,7 +46,7 @@ export const CreateReptile = () => {
             </select>
         <label htmlFor="name1">Name:</label>
             <input name="name1" type="text" value={name} onChange={e => setName(e.target.value)}></input>
-    <button onClick={createreptile}>Create New Reptile</button>
+    <button type="submit">Create New Reptile</button>
 
     </form>
     </>)
