@@ -11,6 +11,7 @@ import { Reptile } from './pages/Reptile';
 import { User } from '@prisma/client';
 import { AuthContext } from './contexts/auth';
 import { useAuth } from './hooks/useAuth';
+import { CreateReptile } from './pages/CreateReptile';
 
 function App() {
   const [token, setToken] = useState(window.localStorage.getItem("token") || "");
@@ -42,6 +43,10 @@ function App() {
         {
           path: '/reptile/:id',
           element: <Reptile />
+        },
+        {
+          path: '/createreptile',
+          element: <CreateReptile />
         }
       ]
     }

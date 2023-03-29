@@ -12,7 +12,7 @@ export const Dashboard = () => {
     <h2>I'm on the Dashboard Page</h2>
     <ScheduleView />
     <Reptiles />
-    {/* TODO: Add Create Reptile Page */}
+    <div><button onClick={() => {navigate('/createreptile')}}>New Reptile</button></div>
     <button onClick={() =>{
         setToken("");
         navigate('/')
