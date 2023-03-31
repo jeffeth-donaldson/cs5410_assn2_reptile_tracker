@@ -28,8 +28,8 @@ export const CreateReptile = () => {
     }
     
     return(<>
-    <h2>I'm on the Create Reptile Page</h2>
-    <form className="CreateRep" onSubmit={createreptile}>
+    <form className="signupPage" onSubmit={createreptile}>
+    <h2 className="box">Create New Reptile</h2>
         <label htmlFor="species1">Species:</label>
             <select name="species1" required>
                 <option disabled selected></option>
@@ -46,7 +46,9 @@ export const CreateReptile = () => {
             </select>
         <label htmlFor="name1">Name:</label>
             <input name="name1" type="text" value={name} onChange={e => setName(e.target.value)}></input>
-    <button type="submit">Create New Reptile</button>
+    <div className="space">
+        <button type="submit">Create New Reptile</button>
+    </div>
 
     </form>
     </>)

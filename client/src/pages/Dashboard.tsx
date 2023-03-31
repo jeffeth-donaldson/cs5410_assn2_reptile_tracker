@@ -14,7 +14,7 @@ export const Dashboard = () => {
     <h2 className="filledBox">Dashboard</h2>
     <ScheduleView />
     <Reptiles />
-    <div><button onClick={() => {navigate('/createreptile')}}>New Reptile</button></div>
+    <div className="space"><button onClick={() => {navigate('/createreptile')}}>New Reptile</button></div>
     <button onClick={() =>{
         setToken("");
         navigate('/')
