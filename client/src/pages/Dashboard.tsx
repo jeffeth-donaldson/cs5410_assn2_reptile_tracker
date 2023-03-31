@@ -4,18 +4,20 @@ import { Reptiles } from "../components/Reptiles";
 import { ScheduleView } from "../components/Schedule";
 import { AuthContext } from "../contexts/auth"
 import { useAuth } from "../hooks/useAuth"
+import '../App.css'
 
 export const Dashboard = () => {
     const {token, setToken} = useAuth();
     const navigate = useNavigate();
-    return(<>
-    <h2>I'm on the Dashboard Page</h2>
+    return(
+    <div className="signupPage">
+    <h2 className="filledBox">Dashboard</h2>
     <ScheduleView />
     <Reptiles />
-    {/* TODO: Add Create Reptile Page */}
+    <div className="space"><button onClick={() => {navigate('/createreptile')}}>New Reptile</button></div>
     <button onClick={() =>{
         setToken("");
         navigate('/')
         }}>Log Out</button>
-    </>)
+    </div>)
 }

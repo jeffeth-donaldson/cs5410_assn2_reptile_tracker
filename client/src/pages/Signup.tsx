@@ -24,8 +24,9 @@ export const Signup = () => {
         }
     }
     return (
-        <>
-        <h2>Sign up</h2>
+        <div className="signupPage">
+        <h1>Reptile Tracker</h1>
+        <h2 className="box">Sign up</h2>
         <form className="signup">
             <label>Email:<input type={"email"} value={email} onChange={e => setEmail(e.target.value)} /></label>
             <label>Password: <input type={"password"} value={password} onChange={e => setPassword(e.target.value)} /></label>
@@ -33,8 +34,8 @@ export const Signup = () => {
             <label>Last Name: <input type={"text"} value={lastName} onChange={e => setLastName(e.target.value)} /></label>
         </form>
         <button onClick={signup}>Sign up</button>
-        <div>Already have an Account? <Link to={'/login'}>Log in</Link></div>
-        </>
+        <div className="space">Already have an Account? <Link to={'/login'}>Log in</Link></div>
+        </div>
     )
 
 }
