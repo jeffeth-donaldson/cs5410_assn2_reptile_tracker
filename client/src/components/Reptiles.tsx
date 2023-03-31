@@ -15,7 +15,7 @@ export const Reptiles = () => {
 
     return (
         <div className={"reptilesList"}>
-            <h2>My Reptiles</h2>
+            <h2 className="box">My Reptiles</h2>
             <table>
                 <thead>
                     <tr><th>Reptile Number</th><th>Name</th><th>Species</th><th>Sex</th><th>Delete</th></tr>

@@ -32,16 +32,17 @@ export const Login = () => {
         }
     }
     return (
-        <>
-        <h2>Log In</h2>
-        <div>
+        <div className="signupPage">
+        <h1>Reptile Tracker</h1>
+        <h2 className="box">Log In</h2>
+        <div className="signup">
             <label>Email:<input type={"email"} value={email} onChange={e => setEmail(e.target.value)} /></label>
             <label>Password: <input type={"password"} value={password} onChange={e => setPassword(e.target.value)} /></label>
         </div>
         <div className="error">{error}</div>
         <button onClick={Login}>Log in</button>
-        <div>Need an Account? <Link to="/signup">Sign up.</Link></div>
-        </>
+        <div className="space">Need an Account? <Link to="/signup">Sign up.</Link></div>
+        </div>
     )
 
 }

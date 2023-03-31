@@ -21,7 +21,7 @@ export const ScheduleView = () => {
     },[])
     return(
         <div className="Schedule">
-            <h2>Today's Schedule</h2>
+            <h2 className="box">Today's Schedule</h2>
             <ol>
             {events.map( event => {
                 if (event[days[new Date().getDay()]])
