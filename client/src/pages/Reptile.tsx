@@ -240,10 +240,11 @@ export const Reptile = () => {
             <h3>Husbandry Records</h3>
             <div className="vert">
                 <h4>Add a record</h4>
-                <input type="text" onChange={e => setHumidity(parseFloat(e.target.value) || humidity) } placeholder="Humidity in percentage ex. 23" />
-                <input type="text" onChange={e => setLength(parseFloat(e.target.value) || length) } placeholder="Weight"/>
-                <input type="text" onChange={e => setTemperature(parseFloat(e.target.value) || temperature) } placeholder="Length"/>
-                <input type="text" onChange={e => setWeight(parseFloat(e.target.value) || weight) } placeholder="Temperature"/>
+                <p>(default 0 if left empty)</p>
+                <input type="text" onChange={e => setHumidity(parseFloat(e.target.value) || 0) } placeholder="Humidity in percentage ex. 23" />
+                <input type="text" onChange={e => setLength(parseFloat(e.target.value) || 0) } placeholder="Length"/>
+                <input type="text" onChange={e => setTemperature(parseFloat(e.target.value) || 0) } placeholder="Temperature"/>
+                <input type="text" onChange={e => setWeight(parseFloat(e.target.value) || 0) } placeholder="Weight"/>
                 <button onClick={ () => {postHusbandryRecord()}
                 }>Add record</button>
             </div>
@@ -260,6 +261,7 @@ export const Reptile = () => {
             <h3>Feedings</h3>
             <div className="vert">
                 <h4>Add a food</h4>
+                <p>(default medium rat if no selection)</p>
                 <span>
                     <input type="radio" onChange={e=> setFood(e.target.value)} value={"large mouse"} name="foods" id="food1" />
                     <label htmlFor="food1">A large mouse</label>
@@ -373,7 +375,7 @@ function ScheduleCard(props: ScheduleBody) {
         <ul>
             <li> Type: {props.type} </li>
             <li> Description: {props.description} </li> 	
-            <li> Monday: {String( props.monday)} </li>  	
+            <li> Monday: {String(props.monday)} </li>  	
             <li> Tuesday: {String(props.tuesday)} </li> 
             <li> Wednesday: {String(props.wednesday)} </li>
             <li> Thursday: {String(props.thursday)} </li> 
