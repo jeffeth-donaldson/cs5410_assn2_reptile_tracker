@@ -91,12 +91,25 @@ const getUserReptiles = (client:PrismaClient):RequestHandler => async (req:Reque
     res.json(reptiles);
 }
 
+const getUserReptile = (client:PrismaClient):RequestHandler => async (req:RequestWithJWTBody, res) => {
+    const reptile = await client.reptile.findFirst({
+        where: {
+            userId: req.jwtBody?.userId,
+            id: parseInt(req.params.id)
+        }
+    });
+    res.json(reptile);
+}
+
+
+
 export const reptileController = build_controller(
     "reptiles",
     [
         {path: "/", endpointBuilder:createReptile, method:"post"},
         {path:"/:id", endpointBuilder:deleteReptile, method:"delete"},
         {path:"/:id", endpointBuilder:updateReptile, method:"put"},
+        {path:"/:id", endpointBuilder:getUserReptile, method:"get"},
         {path:"/mine", endpointBuilder:getUserReptiles, method:"get"}
     ]
 )
