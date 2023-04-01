@@ -107,9 +107,10 @@ export const reptileController = build_controller(
     "reptiles",
     [
         {path: "/", endpointBuilder:createReptile, method:"post"},
+        {path:"/mine", endpointBuilder:getUserReptiles, method:"get"},
         {path:"/:id", endpointBuilder:deleteReptile, method:"delete"},
         {path:"/:id", endpointBuilder:updateReptile, method:"put"},
-        {path:"/:id", endpointBuilder:getUserReptile, method:"get"},
-        {path:"/mine", endpointBuilder:getUserReptiles, method:"get"}
+        {path:"/:id", endpointBuilder:getUserReptile, method:"get"}
+        
     ]
 )
