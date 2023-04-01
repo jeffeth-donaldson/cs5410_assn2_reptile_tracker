@@ -192,10 +192,11 @@ export const Reptile = () => {
     }, []);
 
     return(<>
-    <h2>Records for reptile</h2>
+    
 
-    <div className="split">
-        <div className="section">
+    <div className="signupPage">
+    <h2 className="box">Records for {reptile && reptile.name}</h2>
+        <div>
             <p>Name: {reptile && reptile.name} || Species: {reptile && reptile.species} || Sex: {reptile && reptile.sex}</p>
             <br />
             <p>Name</p>
@@ -221,7 +222,7 @@ export const Reptile = () => {
                 </span>
             </div>
             <hr />
-            <div className="vert">
+            <div>
                 <p>Sex</p>
                 <span>
                     <input type="radio" onChange={e=> setSex(e.target.value)} name="sex" id="m" value="m"/>
@@ -237,9 +238,8 @@ export const Reptile = () => {
         </div>
 
         <div className="section">
-            <h3>Husbandry Records</h3>
-            <div className="vert">
-                <h4>Add a record</h4>
+            <h3 className="box">Husbandry Records</h3>
+            <div className="space">
                 <p>(default 0 if left empty)</p>
                 <input type="text" onChange={e => setHumidity(parseFloat(e.target.value) || 0) } placeholder="Humidity in percentage ex. 23" />
                 <input type="text" onChange={e => setLength(parseFloat(e.target.value) || 0) } placeholder="Length"/>
@@ -258,9 +258,8 @@ export const Reptile = () => {
         </div>
 
         <div className="section">
-            <h3>Feedings</h3>
-            <div className="vert">
-                <h4>Add a food</h4>
+            <h3 className="box">Feedings</h3>
+            <div className="space">
                 <p>(default medium rat if no selection)</p>
                 <span>
                     <input type="radio" onChange={e=> setFood(e.target.value)} value={"large mouse"} name="foods" id="food1" />
@@ -283,9 +282,8 @@ export const Reptile = () => {
         </div >
 
         <div className="section">
-            <h3>Schedules</h3>
-            <h4>Add a Schedule</h4>
-            <div className="vert">
+            <h3 className="box">Schedules</h3>
+            <div className="space">
                 <p>Task to Schedule</p>
                 <span>
                     <input type="radio" onChange={e=> setType(e.target.value)} value={"feed"} name="types" id="type1" />
@@ -305,7 +303,7 @@ export const Reptile = () => {
                 <input type="text" value={description} onChange={e => setDescription(e.target.value)} placeholder="description"/>
             </div>
             <hr />
-            <div className="vert">
+            <div className="space">
                 <p>Days</p>
                 <span>
                     <input type="checkbox" onChange={e=> setMonday(e.target.checked)} name="days" id="monday" />
